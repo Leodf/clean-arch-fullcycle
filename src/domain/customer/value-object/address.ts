@@ -9,7 +9,6 @@ export default class Address {
     this._number = number;
     this._zip = zip;
     this._city = city;
-
     this.validate();
   }
 
