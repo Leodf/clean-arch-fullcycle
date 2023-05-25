@@ -1,2 +1,2 @@
 # ddd-fullcycle
-repositorio para o modulo de DDD do curso full cycle
+repositorio para o modulo de Clean Arch do curso full cycle
