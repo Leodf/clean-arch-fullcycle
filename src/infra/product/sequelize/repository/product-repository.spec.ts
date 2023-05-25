@@ -78,6 +78,10 @@ describe('Product repository test', () => {
             price: foundProduct.price
         })
     })
+    test('should not find a product', async () => {
+        const productRepository = new ProductRepository()
+        await expect(() => productRepository.find("2")).rejects.toThrow("Product not found")
+    })
     test('should find all products', async () => {
         const productRepository = new ProductRepository()
         const product = new Product("1", "Product 1", 100)

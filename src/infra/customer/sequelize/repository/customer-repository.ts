@@ -44,20 +44,19 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
           id,
         },
         rejectOnEmpty: true,
-      });
+      })
+      const customer = new Customer(id, customerModel.name);
+      const address = new Address(
+        customerModel.street,
+        customerModel.number,
+        customerModel.zipcode,
+        customerModel.city
+      );
+      customer.changeAddress(address);
+      return customer
     } catch (error) {
       throw new Error("Customer not found");
     }
-
-    const customer = new Customer(id, customerModel.name);
-    const address = new Address(
-      customerModel.street,
-      customerModel.number,
-      customerModel.zipcode,
-      customerModel.city
-    );
-    customer.changeAddress(address);
-    return customer;
   }
 
   async findAll(): Promise<Customer[]> {
@@ -76,9 +75,9 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       if (customerModels.active) {
         customer.activate();
       }
-      return customer;
+      return customer
     });
 
-    return customers;
+    return customers
   }
 }

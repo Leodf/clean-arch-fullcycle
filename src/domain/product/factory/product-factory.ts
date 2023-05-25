@@ -1,15 +1,17 @@
 import Product from "../entity/product";
 import ProductB from "../entity/product-b";
-import ProductInterface from "../entity/product-interface";
 import { v4 as uuid } from 'uuid'
+import { ProductDto } from "./product-factory-dto";
 
 export default class ProductFactory {
-    public static create(type: string, name: string, price: number): ProductInterface {
+    public static create(productDto: ProductDto) {
+        const { id, type, name, price } = productDto
+        const productId = id ? id : uuid()
         switch (type) {
             case "a":
-                return new Product(uuid(), name, price)
+                return new Product(productId, name, price)
             case "b":
-                return new ProductB(uuid(), name, price)
+                return new ProductB(productId, name, price)
             default:
                 throw new Error("Product type not supported")
         }

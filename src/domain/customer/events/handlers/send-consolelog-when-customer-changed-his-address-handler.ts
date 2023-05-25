@@ -6,6 +6,6 @@ export default class SendConsoleLogWhenCustomerChangedAddressHandler
 {
     handle(event: CustomerChangedAddressEvent): void {
         const { id, name, address } = event.eventData
-        console.log(`Endereço do cliente: ${id}, ${name} alterado para: ${address}`);
+        // console.log(`Endereço do cliente: ${id}, ${name} alterado para: ${address}`);
     }
 }

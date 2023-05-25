@@ -1,7 +1,7 @@
 import Customer from "../entity/customer";
 import { v4 as uuid } from "uuid";
 import Address from "../value-object/address";
-import AddressDto from "./customer-address-dto";
+import AddressDto from "./customer-factory-address-dto";
 
 export default class CustomerFactory {
     public static create(name: string): Customer {
