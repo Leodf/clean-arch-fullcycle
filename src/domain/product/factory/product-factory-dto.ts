@@ -1,6 +1,6 @@
 export interface ProductDto {
     id?: string
-    type: string
+    type?: string
     name: string
     price: number
 }

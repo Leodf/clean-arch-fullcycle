@@ -7,7 +7,8 @@ export default class ProductFactory {
     public static create(productDto: ProductDto) {
         const { id, type, name, price } = productDto
         const productId = id ? id : uuid()
-        switch (type) {
+        const productType = type ?? "a"
+        switch (productType) {
             case "a":
                 return new Product(productId, name, price)
             case "b":
