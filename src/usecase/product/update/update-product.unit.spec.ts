@@ -5,14 +5,12 @@ import { InputUpdateProductDto } from "./update-product-dto";
 
 const input: InputUpdateProductDto = {
     id: "abc",
-    type: "a",
     name: "Product Update",
     price: 500,
 }
 
 const product = ProductFactory.create({
     id: "abc",
-    type: "a",
     name: "Product",
     price: 100,
 })

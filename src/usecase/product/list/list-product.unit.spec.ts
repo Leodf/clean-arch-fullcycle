@@ -1,15 +1,18 @@
+import ProductFactory from "../../../domain/product/factory/product-factory";
 import ListProductUseCase from "./list-product";
 
-const product1 = {
-    id: "1",
+const productDto1 = {
     name: "Product 1",
     price: 100,
 }
-const product2 = {
-    id: "2",
+const productDto2 = {
+    type: "b",
     name: "Product 2",
-    price: 200,
+    price: 100,
 }
+
+const product1 = ProductFactory.create(productDto1)
+const product2 = ProductFactory.create(productDto2)
 
 const MockRepository = () => {
     return {
@@ -20,8 +23,8 @@ const MockRepository = () => {
     }
 }
 
-describe("Unit test for listing customer use case", () => {
-    test("should list a customer", async () => {
+describe("Unit test for listing product use case", () => {
+    test("should list a product", async () => {
         const productRepository = MockRepository()
         const listProductUseCase = new ListProductUseCase(productRepository)
 

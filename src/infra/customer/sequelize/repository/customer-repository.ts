@@ -1,10 +1,9 @@
-import Address from "../../../../domain/customer/value-object/address";
-import Customer from "../../../../domain/customer/entity/customer";
-import CustomerRepositoryInterface from "../../../../domain/customer/repository/customer-repository-interface";
+import CustomerRepositoryInterface from "../../../../usecase/customer/@repository/customer-repository-interface";
+import { InputCustomerRepositoryDto, OutputCustomerRepositoryDto } from "../../../../usecase/customer/@repository/customer-repository-dto";
 import CustomerModel from "../model/customer-model";
 
 export default class CustomerRepository implements CustomerRepositoryInterface {
-  async create(entity: Customer): Promise<void> {
+  async create(entity: InputCustomerRepositoryDto): Promise<void> {
     await CustomerModel.create({
       id: entity.id,
       name: entity.name,
@@ -12,12 +11,12 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       number: entity.address.number,
       zipcode: entity.address.zip,
       city: entity.address.city,
-      active: entity.isActive(),
+      active: entity.active,
       rewardPoints: entity.rewardPoints,
-    });
+    })
   }
 
-  async update(entity: Customer): Promise<void> {
+  async update(entity: InputCustomerRepositoryDto): Promise<void> {
     await CustomerModel.update(
       {
         name: entity.name,
@@ -25,7 +24,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         number: entity.address.number,
         zipcode: entity.address.zip,
         city: entity.address.city,
-        active: entity.isActive(),
+        active: entity.active,
         rewardPoints: entity.rewardPoints,
       },
       {
@@ -33,51 +32,51 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
           id: entity.id,
         },
       }
-    );
+    )
   }
 
-  async find(id: string): Promise<Customer> {
-    let customerModel;
+  async find(id: string): Promise<OutputCustomerRepositoryDto> {
     try {
-      customerModel = await CustomerModel.findOne({
+      const customerModel = await CustomerModel.findOne({
         where: {
           id,
         },
         rejectOnEmpty: true,
       })
-      const customer = new Customer(id, customerModel.name);
-      const address = new Address(
-        customerModel.street,
-        customerModel.number,
-        customerModel.zipcode,
-        customerModel.city
-      );
-      customer.changeAddress(address);
-      return customer
+
+      return {
+        id: customerModel.id,
+        name: customerModel.name,
+        address: {
+          street: customerModel.street,
+          number: customerModel.number,
+          zip: customerModel.zipcode,
+          city: customerModel.city,
+        },
+        active: customerModel.active,
+        rewardPoints: customerModel.rewardPoints
+      }
     } catch (error) {
       throw new Error("Customer not found");
     }
   }
 
-  async findAll(): Promise<Customer[]> {
-    const customerModels = await CustomerModel.findAll();
-
-    const customers = customerModels.map((customerModels) => {
-      let customer = new Customer(customerModels.id, customerModels.name);
-      customer.addRewardPoints(customerModels.rewardPoints);
-      const address = new Address(
-        customerModels.street,
-        customerModels.number,
-        customerModels.zipcode,
-        customerModels.city
-      );
-      customer.changeAddress(address);
-      if (customerModels.active) {
-        customer.activate();
-      }
-      return customer
-    });
-
-    return customers
+  async findAll(): Promise<OutputCustomerRepositoryDto[]> {
+    const customerModels = await CustomerModel.findAll()
+    return customerModels
+      .map(
+        (customerModel) => ({
+          id: customerModel.id,
+          name: customerModel.name,
+          address: {
+            street: customerModel.street,
+            number: customerModel.number,
+            zip: customerModel.zipcode,
+            city: customerModel.city,
+          },
+          active: customerModel.active,
+          rewardPoints: customerModel.rewardPoints
+        })
+      )
   }
 }

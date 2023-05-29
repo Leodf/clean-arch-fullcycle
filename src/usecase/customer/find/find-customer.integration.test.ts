@@ -30,7 +30,7 @@ describe('Integration Test find customer usecase', () => {
 
         const address = new Address("Street 1", 150, "123456-789", "São Paulo")
         const customer = new Customer("abc", "Leonardo", address)
-        await customerRepository.create(customer)
+        await customerRepository.create(customer.toJSON())
         
         const input = {
             id: "abc"

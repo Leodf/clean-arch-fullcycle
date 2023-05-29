@@ -1,7 +1,6 @@
-import Product from "../../../domain/product/entity/product";
-import ProductInterface from "../../../domain/product/entity/product-interface";
-import ProductRepositoryInterface from "../../../domain/product/repository/product-repository-interface";
-import Mapper from "../../@shared/mapper";
+
+import ProductFactory from "../../../domain/product/factory/product-factory";
+import ProductRepositoryInterface from "../@repository/product-repository-interface";
 import { InputListProductDto, OutputListProductDto } from "./list-product-dto";
 
 export default class ListProductUseCase {
@@ -11,11 +10,13 @@ export default class ListProductUseCase {
   ) {}
 
   async execute(input: InputListProductDto): Promise<OutputListProductDto> {
-    const products = await this.productRepository.findAll()
-    const output = new Mapper<ProductInterface>().aggregates(products)
+    const productsData = await this.productRepository.findAll()
+    const products = productsData.map(product => {
+      return ProductFactory.create(product)
+    })
     
     return {
-      products: output
+      products: products
     }
   }
 }

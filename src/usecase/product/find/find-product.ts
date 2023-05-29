@@ -1,4 +1,6 @@
-import ProductRepositoryInterface from "../../../domain/product/repository/product-repository-interface";
+
+import ProductFactory from "../../../domain/product/factory/product-factory";
+import ProductRepositoryInterface from "../@repository/product-repository-interface";
 import { InputFindProductDto, OutputFindProductDto } from "./find-product-dto";
 
 export default class FindProductUseCase {
@@ -7,12 +9,9 @@ export default class FindProductUseCase {
     ){}
 
     async execute(input: InputFindProductDto): Promise<OutputFindProductDto> {
-        const product = await this.productRepository.find(input.id)
+        const productData = await this.productRepository.find(input.id)
+        const product = ProductFactory.create({...productData})
 
-        return {
-            id: product.id,
-            name: product.name,
-            price: product.price
-        }
+        return product.toJSON()
     }
 }

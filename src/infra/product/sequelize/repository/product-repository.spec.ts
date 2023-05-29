@@ -27,7 +27,7 @@ describe('Product repository test', () => {
 
         await productRepository.create(product)
 
-        const productModel = await ProductModel.findOne({ where: {id: "1"}})
+        const productModel = await ProductModel.findOne({ where: {id: "1"}, rejectOnEmpty: true })
 
         expect(productModel.toJSON()).toStrictEqual({
             id: "1",
@@ -41,7 +41,7 @@ describe('Product repository test', () => {
 
         await productRepository.create(product)
 
-        const productModel = await ProductModel.findOne({ where: {id: "1"}})
+        const productModel = await ProductModel.findOne({ where: {id: "1"}, rejectOnEmpty: true})
 
         expect(productModel.toJSON()).toStrictEqual({
             id: "1",
@@ -54,7 +54,7 @@ describe('Product repository test', () => {
 
         await productRepository.update(product)
 
-        const updatedProductModel = await ProductModel.findOne({ where: {id: "1"}})
+        const updatedProductModel = await ProductModel.findOne({ where: {id: "1"}, rejectOnEmpty: true})
 
         expect(updatedProductModel.toJSON()).toStrictEqual({
             id: "1",
@@ -68,10 +68,11 @@ describe('Product repository test', () => {
 
         await productRepository.create(product)
 
-        const productModel = await ProductModel.findOne({ where: {id: "1"}})
-
+        const productModel = await ProductModel.findOne({ where: {id: "1"},
+    rejectOnEmpty: true})
+        
         const foundProduct = await productRepository.find("1")
-
+        
         expect(productModel.toJSON()).toStrictEqual({
             id: foundProduct.id,
             name: foundProduct.name,
@@ -90,7 +91,8 @@ describe('Product repository test', () => {
         await productRepository.create(product2)
 
         const foundProducts = await productRepository.findAll()
-        const products = [product, product2]
+        
+        const products = [product.toJSON(), product2.toJSON()]
 
         expect(products).toEqual(foundProducts)
     })

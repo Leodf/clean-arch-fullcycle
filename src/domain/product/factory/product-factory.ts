@@ -4,11 +4,10 @@ import { v4 as uuid } from 'uuid'
 import { ProductDto } from "./product-factory-dto";
 
 export default class ProductFactory {
-    public static create(productDto: ProductDto) {
-        const { id, type, name, price } = productDto
-        const productId = id ? id : uuid()
-        const productType = type ?? "a"
-        switch (productType) {
+    public static create(productDto: ProductDto, type: string = "a") {
+        const { id, name, price } = productDto
+        const productId = id ?? uuid()
+        switch (type) {
             case "a":
                 return new Product(productId, name, price)
             case "b":

@@ -70,4 +70,14 @@ export default class Customer {
     isActive(): boolean {
         return this._active
     }
+
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            address: this.address.toJSON(),
+            active: this.isActive(),
+            rewardPoints: this.rewardPoints
+        }
+    }
 }

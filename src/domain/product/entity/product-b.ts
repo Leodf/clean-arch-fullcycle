@@ -46,4 +46,14 @@ export default class ProductB implements ProductInterface {
         }
         return true
     }
+
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            price: this.price
+        }
+    }
+
+
 }

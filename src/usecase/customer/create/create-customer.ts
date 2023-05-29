@@ -1,5 +1,5 @@
 import CustomerFactory from "../../../domain/customer/factory/customer-factory";
-import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository-interface";
+import CustomerRepositoryInterface from "../@repository/customer-repository-interface";
 import { InputCreateCustomerDto, OutputCreateCustomerDto } from "./create-customer-dto";
 
 export default class CreateCustomerUseCase {
@@ -10,7 +10,7 @@ export default class CreateCustomerUseCase {
     async execute(input: InputCreateCustomerDto): Promise<OutputCreateCustomerDto> {
         const { name, address } = input
         const customer = CustomerFactory.createWithAddress(name, address)
-        await this.customerRepository.create(customer)
+        await this.customerRepository.create(customer.toJSON())
 
         return {
             id: customer.id,

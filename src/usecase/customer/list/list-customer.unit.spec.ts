@@ -29,16 +29,16 @@ const MockRepository = () => {
         create: jest.fn(),
         find: jest.fn(),
         update: jest.fn(),
-        findAll: jest.fn().mockReturnValue(Promise.resolve([customer1, customer2])),
+        findAll: jest.fn().mockReturnValue(Promise.resolve([customer1.toJSON(), customer2.toJSON()])),
     };
 };
 
 describe("Unit test for listing customer use case", () => {
     test("should list a customer", async () => {
-        const repository = MockRepository();
-        const useCase = new ListCustomerUseCase(repository);
+        const customerRepository = MockRepository();
+        const listCustomerUseCase = new ListCustomerUseCase(customerRepository);
 
-        const output = await useCase.execute({});
+        const output = await listCustomerUseCase.execute({});
 
         expect(output.customers.length).toBe(2);
         expect(output.customers[0].id).toBe(customer1.id);

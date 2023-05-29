@@ -28,7 +28,6 @@ describe('Integration Test find product usecase', () => {
         const usecase = new FindProductUseCase(productRepository)
         const product = ProductFactory.create({
             id: "abc",
-            type: 'a',
             name: 'Product A',
             price: 1
         })

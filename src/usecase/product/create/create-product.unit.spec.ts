@@ -1,7 +1,6 @@
 import CreateProductUseCase from "./create-product"
 
 const mockInput = () => ({
-    type: "a",
     name: "Product Name",
     price: 100
 })
@@ -29,10 +28,7 @@ describe('Unit test create product use case', () => {
             name: "Product Name",
             price: 100
         })
-
-        input.type = "b"
-
-        const output2 = await createProductUseCase.execute(input)
+        const output2 = await createProductUseCase.execute(input, "b")
 
         expect(output2.price).toBe(200)
     })
@@ -40,8 +36,7 @@ describe('Unit test create product use case', () => {
         const input = mockInput()
         const productRepository = mockRepository()
         const createProductUseCase = new CreateProductUseCase(productRepository)
-        input.type = "c"
-        await expect(() => createProductUseCase.execute(input)).rejects.toThrow("Product type not supported")
+        await expect(() => createProductUseCase.execute(input, "c")).rejects.toThrow("Product type not supported")
     })
     test('should not create a product with name is missing', async () => {
         const input = mockInput()

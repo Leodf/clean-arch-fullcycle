@@ -1,7 +1,7 @@
 import Customer from "../../../domain/customer/entity/customer";
-import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository-interface";
+import CustomerRepositoryInterface from "../@repository/customer-repository-interface";
 import Mapper from "../../@shared/mapper";
-import { InputListCustomerDto, OutputListCustomerDto } from "./list-customer-dto";
+import { CustomerDto, InputListCustomerDto, OutputListCustomerDto } from "./list-customer-dto";
 
 export default class ListCustomerUseCase {
 
@@ -11,10 +11,9 @@ export default class ListCustomerUseCase {
 
   async execute(input: InputListCustomerDto): Promise<OutputListCustomerDto> {
     const customers = await this.customerRepository.findAll();
-    const output = new Mapper<Customer>().aggregates(customers)
     
     return {
-      customers: output
+      customers: customers
     }
   }
 }
