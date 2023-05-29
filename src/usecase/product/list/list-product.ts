@@ -11,10 +11,10 @@ export default class ListProductUseCase {
 
   async execute(input: InputListProductDto): Promise<OutputListProductDto> {
     const productsData = await this.productRepository.findAll()
-    const products = productsData.map(product => {
-      return ProductFactory.create(product)
+    const products = productsData.map(productData => {
+      const product = ProductFactory.create(productData)
+      return product.toJSON()
     })
-    
     return {
       products: products
     }
