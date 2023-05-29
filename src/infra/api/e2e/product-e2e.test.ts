@@ -44,7 +44,7 @@ describe('E2E test for products', () => {
         expect(response2.status).toBe(200)
 
         const listResponse = await request(app).get("/products").send()
-        console.log(listResponse.body)
+        
         expect(listResponse.status).toBe(200)
         expect(listResponse.body.products.length).toBe(2)
         const product = listResponse.body.products[0]
