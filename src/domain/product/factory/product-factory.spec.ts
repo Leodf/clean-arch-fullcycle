@@ -17,7 +17,7 @@ describe('Product factory unit test', () => {
         expect(product.id).toBeDefined();
         expect(product.name).toBe("Product A");
         expect(product.price).toBe(10);
-        expect(product.constructor.name).toBe("Product");
+        expect(product.constructor.name).toBe("ProductA");
     })
     test('should create a product type B', () => {
         const input = mockProductB()

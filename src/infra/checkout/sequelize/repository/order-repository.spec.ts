@@ -7,7 +7,7 @@ import CustomerRepository from "../../../customer/sequelize/repository/customer-
 import Customer from "../../../../domain/customer/entity/customer"
 import Address from "../../../../domain/customer/value-object/address"
 import ProductRepository from "../../../product/sequelize/repository/product-repository"
-import Product from "../../../../domain/product/entity/product"
+import ProductA from "../../../../domain/product/entity/product-a"
 import OrderItem from "../../../../domain/checkout/entity/order_item"
 import Order from "../../../../domain/checkout/entity/order"
 import OrderRepository from "./order-repository"
@@ -44,7 +44,7 @@ describe('Order repository test', () => {
     await customerRepository.create(customer.toJSON())
 
     const productRepository = new ProductRepository()
-    const product = new Product("123", "Product 1", 10)
+    const product = new ProductA("123", "Product 1", 10)
     await productRepository.create(product.toJSON())
 
     const ordemItem = new OrderItem(
@@ -90,11 +90,11 @@ describe('Order repository test', () => {
       await customerRepository.create(customer.toJSON())
 
       const productRepository = new ProductRepository()
-      const product = new Product("123", "Product 1", 10)
+      const product = new ProductA("123", "Product 1", 10)
       await productRepository.create(product.toJSON())
-      const product2 = new Product("456", "Product 2", 20)
+      const product2 = new ProductA("456", "Product 2", 20)
       await productRepository.create(product2.toJSON())
-      const product3 = new Product("789", "Product 3", 30)
+      const product3 = new ProductA("789", "Product 3", 30)
       await productRepository.create(product3.toJSON())
 
       const orderItem = new OrderItem(
@@ -173,7 +173,7 @@ describe('Order repository test', () => {
       await customerRepository.create(customer.toJSON())
 
       const productRepository = new ProductRepository()
-      const product = new Product("123", "Product 1", 10)
+      const product = new ProductA("123", "Product 1", 10)
       await productRepository.create(product.toJSON())
 
       const orderItem = new OrderItem(
@@ -215,9 +215,9 @@ describe('Order repository test', () => {
       await customerRepository.create(customer.toJSON())
 
       const productRepository = new ProductRepository()
-      const product = new Product("123", "Product 1", 10)
-      const product2 = new Product("456", "Product 2", 20)
-      const product3 = new Product("789", "Product 3", 30)
+      const product = new ProductA("123", "Product 1", 10)
+      const product2 = new ProductA("456", "Product 2", 20)
+      const product3 = new ProductA("789", "Product 3", 30)
 
       await productRepository.create(product.toJSON())
       await productRepository.create(product2.toJSON())

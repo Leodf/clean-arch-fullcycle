@@ -1,4 +1,4 @@
-import Product from "../entity/product";
+import ProductA from "../entity/product-a";
 import ProductB from "../entity/product-b";
 import { v4 as uuid } from 'uuid'
 import { ProductDto } from "./product-factory-dto";
@@ -9,7 +9,7 @@ export default class ProductFactory {
         const productId = id ?? uuid()
         switch (type) {
             case "a":
-                return new Product(productId, name, price)
+                return new ProductA(productId, name, price)
             case "b":
                 return new ProductB(productId, name, price)
             default:

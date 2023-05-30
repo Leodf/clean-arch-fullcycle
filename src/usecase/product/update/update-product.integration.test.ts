@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize-typescript";
 import ProductModel from "../../../infra/product/sequelize/model/product-model";
 import ProductRepository from "../../../infra/product/sequelize/repository/product-repository";
 import UpdateProductUseCase from './update-product'
-import Product from "../../../domain/product/entity/product";
+import ProductA from "../../../domain/product/entity/product-a";
 
 describe('Integration Test list product usecase', () => {
     let sequelize: Sequelize;
@@ -25,7 +25,7 @@ describe('Integration Test list product usecase', () => {
 
     test('should update a product', async () => {
         const productRepository = new ProductRepository()
-        const product = new Product("1", "Product 1", 100)
+        const product = new ProductA("1", "Product 1", 100)
         await productRepository.create(product.toJSON())
         const usecase = new UpdateProductUseCase(productRepository)
         const input = {

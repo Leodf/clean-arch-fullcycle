@@ -1,20 +1,54 @@
-import Address from "../value-object/address"
+import NotificationError from '../../@shared/notification/notification-error'
+import Address from '../value-object/address'
 import Customer from "./customer"
 
 describe('Customer unit tests', () => {
     test('Should throw error when id is empty', () => {
-        expect(() => {
-            let customer = new Customer("", "John")
-        }).toThrowError("customer: Id is required")
+        const error = new NotificationError([
+            {
+                message: "Id is required",
+                context: "customer"
+            }
+        ])
+        try {
+            new Customer("", "John")
+        } catch (customerError) {
+            expect(customerError).toEqual(error)
+        }
     })
     test('Should throw error when name is empty', () => {
-        expect(() => {
-            let customer = new Customer("123", "")
-        }).toThrowError("customer: Name is required")
+        const error = new NotificationError([
+            {
+                message: "Name is required",
+                context: "customer"
+            }
+        ])
+        try {
+            new Customer("123", "")
+        } catch (customerError) {
+            expect(customerError).toEqual(error)
+        }
+    })
+    test('Should throw error when name and Id is empty', () => {
+        const errors = new NotificationError([
+            {
+                message: "Name is required",
+                context: "customer"
+            },
+            {
+                message: "Id is required",
+                context: "customer"
+            },
+        ])
+        try {
+            new Customer("", "")
+        } catch (customerError) {
+            expect(customerError).toEqual(errors)
+        }
     })
     test('Should change name', () => {
         const customer = new Customer("123", "John")
-        
+
         customer.changeName("Jane")
 
         expect(customer.name).toBe("Jane")

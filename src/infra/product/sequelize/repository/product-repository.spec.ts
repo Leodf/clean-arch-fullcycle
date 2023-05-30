@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript"
 import ProductModel from "../model/product-model"
-import Product from "../../../../domain/product/entity/product"
+import ProductA from "../../../../domain/product/entity/product-a"
 import ProductRepository from "./product-repository"
 
 describe('Product repository test', () => {
@@ -23,7 +23,7 @@ describe('Product repository test', () => {
     })
     test('should create a product', async () => {
         const productRepository = new ProductRepository()
-        const product = new Product("1", "Product 1", 100)
+        const product = new ProductA("1", "Product 1", 100)
 
         await productRepository.create(product)
 
@@ -37,7 +37,7 @@ describe('Product repository test', () => {
     })
     test('should update a product', async () => {
         const productRepository = new ProductRepository()
-        const product = new Product("1", "Product 1", 100)
+        const product = new ProductA("1", "Product 1", 100)
 
         await productRepository.create(product)
 
@@ -64,7 +64,7 @@ describe('Product repository test', () => {
     })
     test('should find a product', async () => {
         const productRepository = new ProductRepository()
-        const product = new Product("1", "Product 1", 100)
+        const product = new ProductA("1", "Product 1", 100)
 
         await productRepository.create(product)
 
@@ -85,9 +85,9 @@ describe('Product repository test', () => {
     })
     test('should find all products', async () => {
         const productRepository = new ProductRepository()
-        const product = new Product("1", "Product 1", 100)
+        const product = new ProductA("1", "Product 1", 100)
         await productRepository.create(product)
-        const product2 = new Product("2", "Product 2", 200)
+        const product2 = new ProductA("2", "Product 2", 200)
         await productRepository.create(product2)
 
         const foundProducts = await productRepository.findAll()
