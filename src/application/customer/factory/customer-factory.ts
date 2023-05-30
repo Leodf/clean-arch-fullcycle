@@ -1,6 +1,6 @@
-import Customer from "../entity/customer";
+import Customer from "../../../domain/customer/entity/customer";
 import { v4 as uuid } from "uuid";
-import Address from "../value-object/address";
+import Address from "../../../domain/customer/value-object/address";
 import AddressDto from "./customer-factory-address-dto";
 
 export default class CustomerFactory {

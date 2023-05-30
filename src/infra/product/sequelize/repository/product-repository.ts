@@ -1,5 +1,5 @@
-import { InputProductRepositoryDto, OutputProductRepositoryDto } from "../../../../usecase/product/@repository/product-repository-dto";
-import ProductRepositoryInterface from "../../../../usecase/product/@repository/product-repository-interface";
+import { InputProductRepositoryDto, OutputProductRepositoryDto } from "../../../../application/product/@repository/product-repository-dto";
+import ProductRepositoryInterface from "../../../../application/product/@repository/product-repository-interface";
 import ProductModel from "../model/product-model";
 
 export default class ProductRepository implements ProductRepositoryInterface {

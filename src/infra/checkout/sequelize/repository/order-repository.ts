@@ -1,5 +1,5 @@
-import { InputOrderRepositoryDto, OutputOrderRepositoryDto } from "../../../../usecase/checkout/@repository/order-repository-dto";
-import OrderRepositoryInterface from "../../../../usecase/checkout/@repository/order-repository-interface";
+import { InputOrderRepositoryDto, OutputOrderRepositoryDto } from "../../../../application/checkout/@repository/order-repository-dto";
+import OrderRepositoryInterface from "../../../../application/checkout/@repository/order-repository-interface";
 import OrderItemModel from "../model/order-item-model";
 import OrderModel from "../model/order-model";
 

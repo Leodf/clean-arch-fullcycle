@@ -1,4 +1,4 @@
-import CustomerFactory from "../../../domain/customer/factory/customer-factory";
+import CustomerFactory from "../../factory/customer-factory";
 import ListCustomerUseCase from "./list-customer";
 
 const address1 = {

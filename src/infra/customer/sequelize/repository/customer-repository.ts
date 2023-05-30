@@ -1,5 +1,5 @@
-import CustomerRepositoryInterface from "../../../../usecase/customer/@repository/customer-repository-interface";
-import { InputCustomerRepositoryDto, OutputCustomerRepositoryDto } from "../../../../usecase/customer/@repository/customer-repository-dto";
+import CustomerRepositoryInterface from "../../../../application/customer/repository/customer-repository-interface";
+import { InputCustomerRepositoryDto, OutputCustomerRepositoryDto } from "../../../../application/customer/repository/customer-repository-dto";
 import CustomerModel from "../model/customer-model";
 
 export default class CustomerRepository implements CustomerRepositoryInterface {

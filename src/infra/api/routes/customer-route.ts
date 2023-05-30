@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express'
-import CreateCustomerUseCase from '../../../usecase/customer/create/create-customer'
 import CustomerRepository from '../../customer/sequelize/repository/customer-repository'
-import ListCustomerUseCase from '../../../usecase/customer/list/list-customer'
+import CreateCustomerUseCase from '../../../application/customer/usecase/create/create-customer'
+import ListCustomerUseCase from '../../../application/customer/usecase/list/list-customer'
 
 export const customerRoute = express.Router()
 

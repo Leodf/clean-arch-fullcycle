@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express'
-import CreateProductUseCase from '../../../usecase/product/create/create-product'
-import ListProductUseCase from '../../../usecase/product/list/list-product'
+import CreateProductUseCase from '../../../application/product/create/create-product'
+import ListProductUseCase from '../../../application/product/list/list-product'
 import ProductRepository from '../../product/sequelize/repository/product-repository'
 
 

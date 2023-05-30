@@ -1,5 +1,5 @@
-import Address from "../../../domain/customer/value-object/address";
-import Customer from "../../../domain/customer/entity/customer";
+import Address from "../../../../domain/customer/value-object/address";
+import Customer from "../../../../domain/customer/entity/customer";
 import FindCustomerUseCase from "./find-customer";
 
 const address = new Address("Street 1", 150, "123456-789", "São Paulo")

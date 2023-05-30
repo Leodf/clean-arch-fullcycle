@@ -1,4 +1,4 @@
-import CustomerFactory from "../../../domain/customer/factory/customer-factory";
+import CustomerFactory from "../../factory/customer-factory";
 import UpdateCustomerUseCase from "./update-customer";
 import { InputUpdateCustomerDto } from "./update-customer-dto";
 

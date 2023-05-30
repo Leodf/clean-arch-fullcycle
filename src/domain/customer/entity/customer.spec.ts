@@ -32,13 +32,13 @@ describe('Customer unit tests', () => {
     test('Should throw error when name and Id is empty', () => {
         const errors = new NotificationError([
             {
-                message: "Name is required",
-                context: "customer"
-            },
-            {
                 message: "Id is required",
                 context: "customer"
             },
+            {
+                message: "Name is required",
+                context: "customer"
+            }
         ])
         try {
             new Customer("", "")
