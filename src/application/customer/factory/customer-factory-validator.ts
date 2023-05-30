@@ -1,9 +1,11 @@
 import Customer from "../../../domain/customer/entity/customer";
+import CustomerYupValidator from "../../../infra/customer/yupValidator/customer-validator-yup";
 import ValidatorInterface from "../../@shared/validators/validator-interface";
-import CustomerYupValidator from "../validator/customer-validator-yup";
+import CustomerValidator from "../validator/customer-validator";
 
 export default class CustomerValidatorFactory {
   static create(): ValidatorInterface<Customer> {
-    return new CustomerYupValidator()
+    const yupValidatorAdapter = new CustomerYupValidator()
+    return new CustomerValidator(yupValidatorAdapter)
   }
 }
